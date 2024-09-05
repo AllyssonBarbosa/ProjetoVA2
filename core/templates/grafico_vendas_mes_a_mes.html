@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Vendas Mês a Mês</title>
+    <!-- Inclua as dependências do Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Gráfico de Vendas Mês a Mês - Ano {{ ano }}</h1>
+
+    <canvas id="grafico"></canvas>
+
+    <script>
+        const meses = {{ meses|safe }};
+        const valores = {{ valores|safe }};
+
+        var ctx = document.getElementById('grafico').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Vendas por Mês',
+                    data: valores,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

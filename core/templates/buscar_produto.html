@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscar Produtos</title>
+</head>
+<body>
+    <h1>Buscar Produtos</h1>
+      <h1> </h1>
+        <a> ou então você pode:</a>
+        <h1> </h1>
+        <a href="index">
+        <button>RETORNAR A PAGINA INICIAL</button>
+            <h1> </h1>
+            <a> </a>
+
+
+    <form method="get" action="{% url 'buscar_produto' %}">
+        <label for="q_nome">Buscar por Nome:</label>
+        <input type="text" id="q_nome" name="q_nome" placeholder="Digite o nome do produto">
+        <button type="submit">BUSCAR</button>
+    </form>
+
+
+    <form method="get" action="{% url 'buscar_produto' %}">
+        <label for="q_id">Buscar por ID:</label>
+        <input type="number" id="q_id" name="q_id" placeholder="Digite o ID do produto">
+        <button type="submit">BUSCAR</button>
+    </form>
+
+
+    {% if produto_por_id %}
+        <!-- Detalhes do Produto por ID -->
+        <h2>Detalhes do Produto por ID</h2>
+        <p>ID: {{ produto_por_id.id }}</p>
+        <p>Nome: {{ produto_por_id.nome }}</p>
+        <p>Valor: R$ {{ produto_por_id.valor }}</p>
+        <p>Quantidade: {{ produto_por_id.quantidade }}</p>
+
+
+        <a href="{% url 'modificar_produto' produto_por_id.id %}">
+            <button>ALTERAR</button>
+        <a href="{% url 'realizar_venda' %}" style="display: inline-block;">
+            <button>VENDER</button>
+                </a>
+
+    </a>
+{% endif %}
+
+   {% if produtos_por_nome %}
+    <!-- Resultados da Busca por Nome -->
+    <h2>Resultados da Busca por Nome</h2>
+    <ul>
+        {% for produto in produtos_por_nome %}
+            <li>
+                <H3>   </H3>
+                <h1> </h1>
+                <a>-------------------</a>
+                <h1> </h1>
+                ID: {{ produto.id }}<br>
+                Nome: {{ produto.nome }}<br>
+                Valor: R$ {{ produto.valor }}<br>
+                Quantidade: {{ produto.quantidade }}<br>
+                <td>
+                {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}" width="100">
+                {% else %}
+                Sem foto
+                {% endif %}
+
+                </td>
+                <form method="get" action="{% url 'modificar_produto' produto.id %}">
+                    <button type="submit" style="display: inline-block;">ALTERAR</button>
+                </form>
+                <a href="{% url 'realizar_venda' %}" style="display: inline-block;">
+                    <button>VENDER</button>
+                </a>
+
+
+            </li>
+        {% empty %}
+            <li>Nenhum produto encontrado.</li>
+        {% endfor %}
+
+
+
+
+    </ul>
+{% endif %}
+
+</body>
+</html>

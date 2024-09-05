@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h4> </h4>
+    <h1>PRODUTOS</h1>
+    <H4>Não achou o item que procurava? Voçê pode:</H4>
+    <a href="cadastrar_produto">
+        <button>CADASTRAR PRODUTO</button>
+    </a>
+    <h1> </h1>
+    <A>ou caso precise:</A>
+    <h1> </h1>
+    <a href="realizar_venda">
+        <button>REALIZAR VENDA</button>
+    </a>
+    <h1> </h1>
+    <a> ou então:</a>
+    <h1> </h1>
+    <a href="index">
+        <button>RETORNAR À PÁGINA INICIAL</button>
+    </a>
+    <a> </a>
+    <h1>Lista de Produtos</h1>
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Quantidade em Estoque</th>
+                <th>Deletar Produto</th>
+            </tr>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.id }}</td>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.valor }}</td>
+                <td>{{ produto.quantidade }}</td>
+                <td>
+                    <a href="#" class="delete-link" data-id="{{ produto.id }}">
+                    <button>DELETAR</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <h3> </h3>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteLinks = document.querySelectorAll('.delete-link');
+
+            deleteLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const productId = this.getAttribute('data-id');
+                    const confirmDelete = confirm('Tem certeza que deseja deletar este produto?');
+
+                    if (confirmDelete) {
+                        window.location.href = `/deletar_produto/${productId}/`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

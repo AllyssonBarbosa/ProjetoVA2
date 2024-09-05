@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alterar Produto</title>
+</head>
+<body>
+    <h1>Alterar Produto</h1>
+
+    <p>Dados do Produto:</p>
+    <p>Nome: {{ produto.nome }}</p>
+    <p>Valor: R$ {{ produto.valor }}</p>
+    <p>quantidade: {{ produto.quantidade }}</p>
+
+    <form method="post" action="{% url 'modificar_produto' produto.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="novo_nome">Novo Nome:</label>
+    <input type="text" id="novo_nome" name="novo_nome" value="{{ produto.nome }}">
+    <label for="novo_valor">Novo Valor:</label>
+    <input type="number" id="novo_valor" name="novo_valor" value="{{ produto.valor }}">
+    <label for="novo_quantidade">Nova Quantidade:</label>
+    <input type="text" id="novo_quantidade" name="novo_quantidade" value="{{ produto.quantidade }}">
+    <label for="nova_imagem">Nova Imagem:</label>
+    <input type="file" id="nova_imagem" name="nova_imagem">
+    <button type="submit">Salvar Alterações</button>
+</form>
+
+
+    <h3> </h3>
+
+    <a href="/buscar_produto">
+        <button>BUSCAR OUTROS PRODUTOS</button>
+</body>
+</html>

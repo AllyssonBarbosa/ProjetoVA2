@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estatísticas de Vendas</title>
+</head>
+<body>
+
+    <h1>Estatísticas de Vendas</h1>
+    <a> ou então você pode:</a>
+    <br>
+    <a href="index">
+        <button>RETORNAR À PÁGINA INICIAL</button>
+        <h1> </h1>
+        <a> </a>
+
+        <a> se precisar você pode:</a>
+    <br>
+    <a href="realizar_venda">
+        <button>REALIZAR VENDA</button>
+        <h1> </h1>
+        <a> </a>
+
+
+        <a> Verifique:</a>
+    <br>
+    <a href="produtos_estoque">
+        <button>PRODUTOS COM ESTOQUE BAIXO</button>
+        <h1> </h1>
+        <a> </a>
+
+
+        <a> também pode ir as:</a>
+    <br>
+    <a href="estatisticas_anuais">
+        <button>ESTATISTICAS ANUAIS</button>
+        <h1> </h1>
+        <a> </a>
+
+    <p>Mês Atual: {{ mes_atual }}</p>
+    <p>Ano Atual: {{ ano_atual }}</p>
+
+    <p>Quantidade de Produtos em Estoque: {{ quantidade_total_estoque }}</p>
+    <p>Valor total do estoque de todos os produtos é: R$ {{ valor_total_estoque }}</p>
+    <p>Valor das Vendas no Mês: R$ {{ valor_vendas_mes }}</p>
+    <p>Valor das Vendas no Ano: R$ {{ valor_vendas_ano }}</p>
+    <p>Produto Mais Vendido: {{ produto_mais_vendido.produto__nome }} ({{ produto_mais_vendido.quantidade__sum }} unidades)</p>
+
+
+
+    <table>
+    <tr>
+        <th>Produto</th>
+        <th>Quantidade Vendida</th>
+        <th>Valor Unitário</th>
+        <th>Valor Total</th>
+        <th>Data da Venda</th>
+        <th>Excluir Venda</th>
+    </tr>
+
+
+
+    {% for venda in produtos_vendidos %}
+        <tr>
+            <td>{{ venda.produto.nome }}</td>
+            <td>{{ venda.quantidade }}</td>
+            <td>R$ {{ venda.produto.valor }}</td>
+            <td>R$ {{ venda.valor_total }}</td>
+            <td>{{ venda.data_venda }}</td>
+
+            <td>
+               <form method="post" action="{% url 'excluir_venda' venda.id %}">
+                {% csrf_token %}
+                <button type="submit">EXCLUIR</button>
+            </form>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+</body>
+</html>

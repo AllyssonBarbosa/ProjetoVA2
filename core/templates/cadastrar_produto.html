@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar Produto</title>
+</head>
+<body>
+    <center>
+    <h1>Cadastrar Produto</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">CADASTRAR PRODUTO</button>
+      </form>
+        <a> </a>
+          <h1> </h1>
+        <a> ou então você pode:</a>
+        <h1> </h1>
+        <a href="index">
+        <button>RETORNAR A PAGINA INICIAL</button>
+    </center>
+
+</body>
+</html>
