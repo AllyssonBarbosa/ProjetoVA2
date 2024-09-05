@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+
+    <h1>Cadastro de Usuário</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">CADASTRAR</button>
+    </form>
+    <h4>Já possui conta?</h4>
+    <a href="{% url 'usuarios:login' %}">
+        <button>LOGAR USUÁRIO</button>
+    </a>
+    <h4>Ou então você pode:</h4>
+    <a href="{% url 'index' %}">
+        <button>RETORNAR À PÁGINA INICIAL</button>
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+<center>
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ENTRAR</button>
+    </form>
+    <h3> </h3>
+    <h4>Não possui conta? </h4>
+    <a href="/usuarios/cadastro">
+        <button>CADASTRAR USUÁRIO</button>
+         <h1> </h1>
+        <a> ou então você pode:</a>
+        <h1> </h1>
+        <a href="{% url 'index' %}">
+        <button>RETORNAR A PAGINA INICIAL</button>
+    </a>
+</center>
+</body>
+</html>
